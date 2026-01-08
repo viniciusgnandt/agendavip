@@ -1,6 +1,6 @@
 services:
   dev:
-    image: node:latest
+    image: node:20
     container_name: agendavip_dev
     tty: true
     stdin_open: true
@@ -9,3 +9,12 @@ services:
     volumes:
       - .:/app
     working_dir: /app
+    env_file:
+      - ./.env
+    restart: unless-stopped
+    networks:
+      - agenda-net
+
+networks:
+  agenda-net:
+    external: true

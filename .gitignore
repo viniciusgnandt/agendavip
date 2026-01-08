@@ -12,6 +12,7 @@
 /build
 
 # misc
+.oci
 .env
 .DS_Store
 .env.local
