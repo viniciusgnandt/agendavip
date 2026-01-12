@@ -1,0 +1,19 @@
+services:
+  agendabackend_${NODE_ENV}:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: agendavip-backend:latest
+    ports:
+      - "${PORT}:8000"
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      PORT: ${PORT}
+      MONGODB_URI: ${MONGODB_URI}
+    restart: unless-stopped
+    networks:
+      - agenda-net
+
+networks:
+  agenda-net:
+    external: true
