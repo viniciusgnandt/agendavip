@@ -1,14 +1,16 @@
 const mongoose = require('mongoose');
 
-const MONGO_URL = 'mongodb://admin:password@mongodb_test:27017/agendavip?authSource=admin';
+const MONGO_URL = process.env.MONGODB_URI;
 
-const env = process.env.NODE_ENV || 'dev';
-let options = {};
+if (!MONGO_URL) {
+  console.error("❌ MONGODB_URI não definida");
+  process.exit(1);
+}
 
 mongoose
   .connect(MONGO_URL)
   .then(() => {
-    console.log("✅ MongoDB conectado com sucesso");
+    console.log("✅ MongoDB conectado");
   })
   .catch((err) => {
     console.error("❌ Erro ao conectar no MongoDB:", err);
