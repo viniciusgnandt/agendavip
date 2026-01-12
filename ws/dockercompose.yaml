@@ -5,7 +5,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: agendavip-backend:latest
     container_name: agendabackend_${NODE_ENV}
     ports:
       - "${PORT}:8000"
