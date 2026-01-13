@@ -3,8 +3,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - "${PORT}:8000"
+      container_name: agendabackend_{NODE_ENV}
+    expose:
+      - "8000"
     environment:
       NODE_ENV: ${NODE_ENV}
       MONGODB_URI: ${MONGODB_URI}
