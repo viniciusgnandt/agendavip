@@ -7,11 +7,13 @@ services:
       dockerfile: Dockerfile
     container_name: agendabackend_${NODE_ENV}
     expose:
-      - "${PORT}:8000"
+      - "8000"
     environment:
       NODE_ENV: ${NODE_ENV}
-      PORT: ${PORT}
       MONGODB_URI: ${MONGODB_URI}
+      OCI_CONFIG: ${OCI_CONFIG}
+      OCI_API_KEY : ${OCI_API_KEY}
+      OCI_API_KEY_PUBLIC_PEM: ${OCI_API_KEY_PUBLIC_PEM}
     restart: unless-stopped
     networks:
       - agenda-net
