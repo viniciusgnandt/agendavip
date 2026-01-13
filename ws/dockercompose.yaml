@@ -1,9 +1,6 @@
-version: "3.9"
-
 services:
   agendabackend:
     build:
-      context: .
       dockerfile: Dockerfile
     container_name: agendabackend_${NODE_ENV}
     expose:
