@@ -1,9 +1,9 @@
 services:
   agendabackend:
+    container_name: agendabackend_{NODE_ENV}
     build:
       context: .
       dockerfile: Dockerfile
-      container_name: agendabackend_{NODE_ENV}
     expose:
       - "8000"
     environment:
