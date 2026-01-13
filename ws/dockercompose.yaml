@@ -3,8 +3,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    expose:
-      - "8000"
+    ports:
+      - "${PORT}:8000"
     environment:
       NODE_ENV: ${NODE_ENV}
       MONGODB_URI: ${MONGODB_URI}
