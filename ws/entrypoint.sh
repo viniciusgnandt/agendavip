@@ -11,8 +11,15 @@ if [ -n "$OCI_CONFIG" ]; then
   echo "$OCI_CONFIG" | sed 's/\\n/\n/g' > /root/.oci/config
 fi
 
-echo "$OCI_API_KEY_PEM" > /root/.oci/oci_api_key.pem
-echo "$OCI_API_KEY_PUBLIC_PEM" > /root/.oci/oci_api_key_public.pem
+e# Private key
+if [ -n "$OCI_API_KEY" ]; then
+  echo "$OCI_API_KEY" | sed 's/\\n/\n/g' > /root/.oci/oci_api_key.pem
+fi
+
+# Public key (opcional)
+if [ -n "$OCI_API_KEY_PUBLIC_PEM" ]; then
+  echo "$OCI_API_KEY_PUBLIC_PEM" | sed 's/\\n/\n/g' > /root/.oci/oci_api_key_public.pem
+fi
 
 chmod 600 /root/.oci/*
 
