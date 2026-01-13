@@ -1,5 +1,6 @@
 services:
   api:
+    container_name: agendabackend_${NODE_ENV}
     build:
       context: .
       dockerfile: Dockerfile
