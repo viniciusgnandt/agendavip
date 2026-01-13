@@ -11,7 +11,7 @@ if [ -n "$OCI_CONFIG" ]; then
   echo "$OCI_CONFIG" | sed 's/\\n/\n/g' > /root/.oci/config
 fi
 
-e# Private key
+# Private key
 if [ -n "$OCI_API_KEY" ]; then
   echo "$OCI_API_KEY" | sed 's/\\n/\n/g' > /root/.oci/oci_api_key.pem
 fi
