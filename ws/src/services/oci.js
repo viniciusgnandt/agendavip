@@ -1,9 +1,11 @@
 const common = require("oci-common");
 const objectstorage = require("oci-objectstorage");
+const OCI_BUCKET_NAMESPACE = process.env.OCI_BUCKET_NAMESPACE;
+const OCI_BUCKET_NAME = process.env.OCI_BUCKET_NAME;
 
 module.exports = {
-  NAMESPACE: "grh9g0gwr4as",      // ex: axaxaxaxax
-  BUCKET_NAME: "AgendaVip_Dev",    // nome do bucket
+  NAMESPACE: OCI_BUCKET_NAMESPACE,      // ex: axaxaxaxax
+  BUCKET_NAME: OCI_BUCKET_NAME,    // nome do bucket
 
   /**
    * Upload de arquivo
