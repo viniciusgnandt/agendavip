@@ -12,6 +12,8 @@ services:
       OCI_CONFIG: ${OCI_CONFIG}
       OCI_API_KEY: ${OCI_API_KEY}
       OCI_API_KEY_PUBLIC: ${OCI_API_KEY_PUBLIC}
+      OCI_BUCKET_NAME: ${OCI_BUCKET_NAME}
+      OCI_BUCKET_NAMESPACE: ${OCI_BUCKET_NAMESPACE}
     restart: unless-stopped
     networks:
       - agenda-net
