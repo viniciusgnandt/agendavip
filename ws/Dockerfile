@@ -4,7 +4,7 @@ FROM node:20-alpine
 WORKDIR /app
 
 # Instala OCI CLI
-RUN RUN apk add --no-cache \
+RUN apk add --no-cache \
     python3 \
     py3-pip \
     bash \
