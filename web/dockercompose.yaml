@@ -1,5 +1,5 @@
 services:
-  frontend_${NODE_ENV}:
+  frontend:
     container_name: agendafrontend_${NODE_ENV}
     build:
       context: .
