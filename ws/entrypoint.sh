@@ -7,7 +7,7 @@ mkdir -p /root/.oci
 chmod 700 /root/.oci
 
 # Config
-echo "$OCI_CONFIG4" | base64 -d > /root/.oci/config
+echo "$OCI_CONFIG" | base64 -d > /root/.oci/config
 chmod 600 /root/.oci/config
 
 # Private Key
