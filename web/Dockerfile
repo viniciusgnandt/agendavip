@@ -8,8 +8,6 @@ RUN npm install --legacy-peer-deps
 
 COPY . .
 
-RUN yarn build
-
 EXPOSE 3000
 
-CMD ["npm", "run", "serve"]
+CMD ["npm", "run", "start"]
