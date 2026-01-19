@@ -4,10 +4,12 @@ FROM node:20-alpine
 WORKDIR /app
 
 # Instala OCI CLI
-RUN apt-get update && \
-    apt-get install -y python3 python3-pip && \
-    pip3 install oci-cli && \
-    rm -rf /var/lib/apt/lists/*
+RUN RUN apk add --no-cache \
+    python3 \
+    py3-pip \
+    bash \
+    curl && \
+    pip3 install oci-cli
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
