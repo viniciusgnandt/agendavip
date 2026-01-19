@@ -1,16 +1,14 @@
 services:
-  dev:
-    image: node:20
-    container_name: controlpanel_dev
-    tty: true
-    stdin_open: true
-    ports:
-      - "3000:3000"
-    volumes:
-      - .:/app
-    working_dir: /app
-    env_file:
-      - ./.env
+  frontend_${NODE_ENV}:
+    container_name: agendafrontend_${NODE_ENV}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    expose:
+      - "3000"
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      BACKEND_URL: ${BACKEND_URL}
     restart: unless-stopped
     networks:
       - agenda-net
