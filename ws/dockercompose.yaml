@@ -9,9 +9,6 @@ services:
     environment:
       NODE_ENV: ${NODE_ENV}
       MONGODB_URI: ${MONGODB_URI}
-      OCI_CONFIG: ${OCI_CONFIG}
-      OCI_API_KEY: ${OCI_API_KEY}
-      OCI_API_KEY_PUBLIC_PEM: ${OCI_API_KEY_PUBLIC_PEM}
     restart: unless-stopped
     networks:
       - agenda-net

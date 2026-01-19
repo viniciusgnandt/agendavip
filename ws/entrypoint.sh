@@ -1,28 +1,28 @@
 #!/bin/sh
 set -e
 
-echo "🔐 Configurando OCI credentials..."
-
+echo "🔐 Criando diretório OCI..."
 mkdir -p /root/.oci
-chmod 700 /root/.oci
 
-# Config
-if [ -n "$OCI_CONFIG" ]; then
-  echo "$OCI_CONFIG" | sed 's/\\n/\n/g' > /root/.oci/config
-fi
+echo "⬇️ Restaurando OCI config..."
+oci secrets secret-bundle get \
+  --secret-id ocid1.vaultsecret.oc1.sa-saopaulo-1.amaaaaaawspdl4yanrn77t4we4o5wrv7q34rulyeztezbewnivaqlgehnicq \
+  --query "data.\"secret-bundle-content\".content" \
+  --raw-output | base64 -d > /root/.oci/config
 
-# Private key
-if [ -n "$OCI_API_KEY" ]; then
-  echo "$OCI_API_KEY" | sed 's/\\n/\n/g' > /root/.oci/oci_api_key.pem
-fi
+echo "⬇️ Restaurando OCI private key..."
+oci secrets secret-bundle get \
+  --secret-id ocid1.vaultsecret.oc1.sa-saopaulo-1.amaaaaaawspdl4yarrt7zonaqhokuhxv45w2lngvxn4hcrxjq5otcmsr5ymq \
+  --query "data.\"secret-bundle-content\".content" \
+  --raw-output | base64 -d > /root/.oci/oci_api_key.pem
 
-# Public key (opcional)
-if [ -n "$OCI_API_KEY_PUBLIC_PEM" ]; then
-  echo "$OCI_API_KEY_PUBLIC_PEM" | sed 's/\\n/\n/g' > /root/.oci/oci_api_key_public.pem
-fi
+echo "⬇️ Restaurando OCI public key..."
+oci secrets secret-bundle get \
+  --secret-id ocid1.vaultsecret.oc1.sa-saopaulo-1.amaaaaaawspdl4yaspc3r33urzrwbsqtnfkxokjawnxnndruqheyqr2bmr2a \
+  --query "data.\"secret-bundle-content\".content" \
+  --raw-output | base64 -d > /root/.oci/oci_api_key_public.pem
 
 chmod 600 /root/.oci/*
 
-echo "✅ OCI credentials configuradas"
-
-exec "$@"
+echo "✅ OCI configurado com sucesso"
+exec npm run start
