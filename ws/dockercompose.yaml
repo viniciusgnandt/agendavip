@@ -6,9 +6,6 @@ services:
       dockerfile: Dockerfile
     expose:
       - "8000"
-    environment:
-      NODE_ENV: ${NODE_ENV}
-      MONGODB_URI: ${MONGODB_URI}
     restart: unless-stopped
     networks:
       - agenda-net
