@@ -1,15 +1,13 @@
 # ws/Dockerfile
-FROM node:20-alpine
+FROM node:20-bullseye
 
 WORKDIR /app
 
 # Instala OCI CLI
-RUN apk add --no-cache \
-    python3 \
-    py3-pip \
-    bash \
-    curl && \
-    pip3 install oci-cli
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip curl && \
+    pip3 install oci-cli && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
