@@ -9,6 +9,9 @@ services:
     environment:
       NODE_ENV: ${NODE_ENV}
       BACKEND_URL: ${BACKEND_URL}
+      salaoId: ${salaoId}
+      clienteId: ${clienteId}
+      colaboradorId: ${colaboradorId}
     restart: unless-stopped
     networks:
       - agenda-net
