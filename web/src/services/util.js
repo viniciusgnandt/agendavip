@@ -1,12 +1,8 @@
+const bucketURL = process.env.bucketURL;
+
 export default {
-  baseURL: 'http://localhost:8000',
-  /*
-    process.env.NODE_ENV === 'dev'
-      ? 'http://localhost:8000'
-      : ,
-  */
   OCI: {
-    bucketURL: '',
+    bucketURL: bucketURL,
   },
   validateEmail: (email) => {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

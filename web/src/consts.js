@@ -1,5 +1,9 @@
+const salaoId = process.env.salaoId;
+const clienteId = process.env.clienteId;
+const colaboradorId = process.env.colaboradorId;
+
 export default {
-  salaoId: '69599b82059ee14735fd163d',
-  clienteId: '695d604543318728017c55ac',
-  colaboradorId: '69599c1a059ee14735fd163e',
+  salaoId: salaoId,
+  clienteId: clienteId,
+  colaboradorId: colaboradorId,
 };

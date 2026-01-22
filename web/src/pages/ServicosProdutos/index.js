@@ -195,7 +195,7 @@ const ServicosProdutos = () => {
                 defaultFileList={servico.arquivos.map((s, i) => ({
                   name: s?.caminho,
                   fileKey: i,
-                  url: `${util.AWS.bucketURL}/${s?.caminho}`,
+                  url: `${util.OCI.bucketURL}/${s?.caminho}`,
                 }))}
                 onChange={(files) => {
                   const arquivos = files
