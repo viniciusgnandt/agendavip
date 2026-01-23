@@ -41,9 +41,9 @@ router.get('/servicos/:salaoId', async (req, res) => {
 /*
   BUSCA UM SALÃO PELO ID
 */
-router.get('/:id', async (req, res) => {
+router.get('/:salaoId', async (req, res) => {
   try {
-    const salao = await Salao.findById(req.params.id).select(req.body.fields);
+    const salao = await Salao.findById(req.params.salaoId).select(req.body.fields);
     
     const distance = turf
       .distance(
