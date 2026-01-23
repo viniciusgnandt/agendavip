@@ -19,26 +19,6 @@ router.post('/', async (req, res) => {
 });
 
 /*
-  BUSCA OS SERVIÇOS DE UM SALÃO
-*/
-router.get('/servicos/:salaoId', async (req, res) => {
-  try {
-    const { salaoId } = req.params;
-    const servicos = await Servico.find({
-      salaoId,
-      status: 'A',
-    }).select('_id titulo');
-     
-    res.json({
-      servicos: servicos.map((s) => ({ label: s.titulo, value: s._id })),
-    });
-    
-  } catch (err) {
-    res.json({ error: true, message: err.message });
-  }
-});
-
-/*
   BUSCA UM SALÃO PELO ID
 */
 router.get('/filter/:id', async (req, res) => {
@@ -59,6 +39,26 @@ router.get('/filter/:id', async (req, res) => {
     const isOpened = await util.isOpened(horarios);
     */
     res.json({ error: false, salao: { ...salao._doc, distance/*, isOpened*/ } });
+  } catch (err) {
+    res.json({ error: true, message: err.message });
+  }
+});
+
+/*
+  BUSCA OS SERVIÇOS DE UM SALÃO
+*/
+router.get('/servicos/:salaoId', async (req, res) => {
+  try {
+    const { salaoId } = req.params;
+    const servicos = await Servico.find({
+      salaoId,
+      status: 'A',
+    }).select('_id titulo');
+     
+    res.json({
+      servicos: servicos.map((s) => ({ label: s.titulo, value: s._id })),
+    });
+    
   } catch (err) {
     res.json({ error: true, message: err.message });
   }
