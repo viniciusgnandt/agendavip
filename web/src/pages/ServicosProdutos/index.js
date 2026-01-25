@@ -192,7 +192,7 @@ const ServicosProdutos = () => {
                 multiple
                 autoUpload={false}
                 listType="picture"
-                fileList={servico.arquivos.map((s, i) => ({
+                defaultFileList={servico.arquivos.map((s, i) => ({
                   name: s?.caminho,
                   fileKey: i,
                   url: `${util.OCI.bucketURL}/${s?.caminho}`,
