@@ -196,6 +196,8 @@ const ServicosProdutos = () => {
                   name: s?.caminho,
                   fileKey: i,
                   url: `${util.OCI.bucketURL}/${s?.caminho}`,
+                  thumbnailUrl: `${util.OCI.bucketURL}/${s?.caminho}`,
+                  status: 'finished',
                 }))}
                 onChange={(files) => {
                   const arquivos = files
