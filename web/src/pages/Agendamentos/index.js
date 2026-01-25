@@ -68,8 +68,7 @@ const Agendamentos = () => {
       <div className="row">
         <div className="col-12">
           <h2 className="mb-4 mt-0">Agendamentos</h2>
-          <h3>Criar novo cliente</h3>
-          
+                    
           <Calendar
             localizer={localizer}
             onRangeChange={(range) =>

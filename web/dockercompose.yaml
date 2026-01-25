@@ -13,7 +13,7 @@ services:
       REACT_APP_SALAO_ID: ${REACT_APP_SALAO_ID}
       REACT_APP_CLIENTE_ID: ${REACT_APP_CLIENTE_ID}
       REACT_APP_COLABORADOR_ID: ${REACT_APP_COLABORADOR_ID}
-      BUCKET_URL: ${BUCKET_URL}
+      REACT_APP_BUCKET_URL: ${REACT_APP_BUCKET_URL}
     restart: unless-stopped
     networks:
       - agenda-net
