@@ -1,5 +1,5 @@
 export default {
-  salaoId: '697020abe4aa25c70f59cdfb',
-  clienteId: '6972b3abe4aa25c70f59ce0d',
-  colaboradorId: '6972b331e4aa25c70f59ce05',
+  salaoId: process.env.REACT_APP_SALAO_ID,
+  clienteId: process.env.REACT_APP_CLIENTE_ID,
+  colaboradorId: process.env.REACT_APP_COLABORADOR_ID,
 };
