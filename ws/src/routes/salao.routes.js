@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
 /*
   BUSCA UM SALÃO PELO ID
 */
-router.get('/filter/:id', async (req, res) => {
+router.post('/filter/:id', async (req, res) => {
   try {
     const salao = await Salao.findById(req.params.id).select(req.body.fields);
     
@@ -43,6 +43,16 @@ router.get('/filter/:id', async (req, res) => {
     res.json({ error: true, message: err.message });
   }
 });
+
+/*
+  ATUALIZAR UM SALÃO
+*/
+
+
+
+/*
+  DELETAR UM SALÃO
+*/
 
 /*
   BUSCA OS SERVIÇOS DE UM SALÃO
