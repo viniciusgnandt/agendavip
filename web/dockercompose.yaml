@@ -1,9 +1,7 @@
 services:
   frontend:
     container_name: agendafrontend_${NODE_ENV}
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/viniciusgnandt/frontend
     expose:
       - "3000"
     environment:

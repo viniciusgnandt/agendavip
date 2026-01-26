@@ -1,9 +1,7 @@
 services:
   api:
     container_name: agendabackend_${NODE_ENV}
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/viniciusgnandt/backend
     expose:
       - "8000"
     environment:
