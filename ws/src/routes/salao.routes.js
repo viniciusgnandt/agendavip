@@ -3,7 +3,7 @@ const router = express.Router();
 const Salao = require('../models/salao');
 const Servico = require('../models/servico');
 const Horario = require('../models/horario');
-const turf = require('turf');
+const turf = require('@turf/distance').default;
 const util = require('../util');
 
 /*
