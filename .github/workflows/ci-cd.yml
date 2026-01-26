@@ -51,12 +51,12 @@ jobs:
 
       - name: Build & Push Backend
         run: |
-          docker build -t $BACKEND_IMAGE:${{ steps.tag.outputs.tag }} ./backend
+          docker build -t $BACKEND_IMAGE:${{ steps.tag.outputs.tag }} ./ws
           docker push $BACKEND_IMAGE:${{ steps.tag.outputs.tag }}
 
       - name: Build & Push Frontend
         run: |
-          docker build -t $FRONTEND_IMAGE:${{ steps.tag.outputs.tag }} ./frontend
+          docker build -t $FRONTEND_IMAGE:${{ steps.tag.outputs.tag }} ./web
           docker push $FRONTEND_IMAGE:${{ steps.tag.outputs.tag }}
 
 # ======================
