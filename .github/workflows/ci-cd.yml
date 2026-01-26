@@ -73,6 +73,7 @@ jobs:
 # DEPLOY TEST (AUTO)
 # ======================
   deploy_test:
+    timeout-minutes: 15
     runs-on: ubuntu-latest
     needs: build
 

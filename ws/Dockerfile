@@ -13,7 +13,7 @@ RUN npm install --omit=dev
 COPY . .
 
 # ===== RUNTIME STAGE =====
-FROM node:20-alpine
+FROM node:20-slim
 
 WORKDIR /app
 
