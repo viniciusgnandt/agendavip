@@ -1,24 +1,13 @@
-# ---------- build ----------
-FROM node:18-alpine AS builder
+# ws/Dockerfile
+FROM node:20-alpine
 
 WORKDIR /app
 
-COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+COPY package*.json ./
+RUN npm install --legacy-peer-deps
 
 COPY . .
-RUN yarn build
-
-
-# ---------- runtime ----------
-FROM node:18-slim
-
-WORKDIR /app
-
-RUN yarn global add serve
-
-COPY --from=builder /app/build ./build
 
 EXPOSE 3000
 
-CMD ["serve", "-s", "build", "-l", "3000"]
+CMD ["npm", "run", "start"]
