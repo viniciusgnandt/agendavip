@@ -1,7 +1,7 @@
 services:
   api:
     container_name: agendabackend_${NODE_ENV}
-    image: ghcr.io/viniciusgnandt/ws:${BACKEND_IMAGE}
+    image: ghcr.io/viniciusgnandt/ws:latest
     expose:
       - "8000"
     environment:

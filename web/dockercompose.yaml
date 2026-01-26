@@ -1,7 +1,7 @@
 services:
   frontend:
     container_name: agendafrontend_${NODE_ENV}
-    image: ghcr.io/viniciusgnandt/web:${FRONTEND_IMAGE}
+    image: ghcr.io/viniciusgnandt/web:latest
     expose:
       - "3000"
     environment:
