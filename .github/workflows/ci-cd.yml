@@ -51,13 +51,23 @@ jobs:
 
       - name: Build & Push Backend
         run: |
-          docker build -t $BACKEND_IMAGE:${{ steps.tag.outputs.tag }} ./ws
+          docker build \
+            -t $BACKEND_IMAGE:${{ steps.tag.outputs.tag }} \
+            -t $BACKEND_IMAGE:latest \
+            ./ws
+
           docker push $BACKEND_IMAGE:${{ steps.tag.outputs.tag }}
+          docker push $BACKEND_IMAGE:latest
 
       - name: Build & Push Frontend
         run: |
-          docker build -t $FRONTEND_IMAGE:${{ steps.tag.outputs.tag }} ./web
-          docker push $FRONTEND_IMAGE:${{ steps.tag.outputs.tag }}
+          docker build \
+            -t $FRONTEND_IMAGE:${{ steps.tag.outputs.tag }} \
+            -t $FRONTEND_IMAGE:latest \
+            ./web
+
+            docker push $FRONTEND_IMAGE:${{ steps.tag.outputs.tag }}
+            docker push $FRONTEND_IMAGE:latest
 
 # ======================
 # DEPLOY TEST (AUTO)
