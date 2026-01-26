@@ -69,17 +69,11 @@ jobs:
     steps:
       - name: Deploy Backend TEST
         run: |
-          curl -X POST \
-          -H "Content-Type: application/json" \
-          -d '{"image":"'"$BACKEND_IMAGE:${{ needs.build.outputs.tag }}"'"}' \
-          ${{ secrets.PORTAINER_WEBHOOK_BACKEND_TEST }}
+          curl -X POST ${{ secrets.PORTAINER_WEBHOOK_BACKEND_TEST }}
 
       - name: Deploy Frontend TEST
         run: |
-          curl -X POST \
-          -H "Content-Type: application/json" \
-          -d '{"image":"'"$FRONTEND_IMAGE:${{ needs.build.outputs.tag }}"'"}' \
-          ${{ secrets.PORTAINER_WEBHOOK_FRONTEND_TEST }}
+          curl -X POST ${{ secrets.PORTAINER_WEBHOOK_FRONTEND_TEST }}
 
 # ======================
 # DEPLOY PROD (MANUAL)
