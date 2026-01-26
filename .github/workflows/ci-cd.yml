@@ -51,7 +51,7 @@ jobs:
 
       - name: Build & Push Backend
         run: |
-          docker build \
+          docker build --no-cache \
             -t $BACKEND_IMAGE:${{ steps.tag.outputs.tag }} \
             -t $BACKEND_IMAGE:latest \
             ./ws
@@ -61,7 +61,7 @@ jobs:
 
       - name: Build & Push Frontend
         run: |
-          docker build \
+          docker build --no-cache \
             -t $FRONTEND_IMAGE:${{ steps.tag.outputs.tag }} \
             -t $FRONTEND_IMAGE:latest \
             ./web
