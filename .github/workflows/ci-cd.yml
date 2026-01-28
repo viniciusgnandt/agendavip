@@ -49,15 +49,15 @@ jobs:
           username: ${{ secrets.GHCR_USERNAME }}
           password: ${{ secrets.GHCR_TOKEN }}
 
-      - name: Build & Push Backend
-        run: |
-          docker build --no-cache \
-            -t $BACKEND_IMAGE:${{ steps.tag.outputs.tag }} \
-            -t $BACKEND_IMAGE:latest \
-            ./ws
+#      - name: Build & Push Backend
+#        run: |
+#          docker build --no-cache \
+#            -t $BACKEND_IMAGE:${{ steps.tag.outputs.tag }} \
+#            -t $BACKEND_IMAGE:latest \
+#            ./ws
 
-          docker push $BACKEND_IMAGE:${{ steps.tag.outputs.tag }}
-          docker push $BACKEND_IMAGE:latest
+#          docker push $BACKEND_IMAGE:${{ steps.tag.outputs.tag }}
+#          docker push $BACKEND_IMAGE:latest
 
       - name: Build & Push Frontend
         run: |
@@ -78,9 +78,9 @@ jobs:
     needs: build
 
     steps:
-      - name: Deploy Backend TEST
-        run: |
-          curl -X POST ${{ secrets.PORTAINER_WEBHOOK_BACKEND_TEST }}
+#      - name: Deploy Backend TEST
+#        run: |
+#          curl -X POST ${{ secrets.PORTAINER_WEBHOOK_BACKEND_TEST }}
 
       - name: Deploy Frontend TEST
         run: |
