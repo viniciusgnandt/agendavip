@@ -73,7 +73,7 @@ jobs:
           password: ${{ secrets.GHCR_TOKEN }}
 
       - name: Build & Push Backend
-        if: needs.changes.outputs.backend == 'true'
+        if: ${{ needs.changes.outputs.backend == 'true' }}
         run: |
           docker build --no-cache \
             -t $BACKEND_IMAGE:${{ steps.tag.outputs.tag }} \
@@ -96,9 +96,8 @@ jobs:
   # DEPLOY TEST (AUTO)
   # ======================
   deploy_test:
-    timeout-minutes: 15
     runs-on: ubuntu-latest
-    needs: build
+    needs: [build, changes]
     steps:
       - name: Deploy Backend TEST
         if: needs.changes.outputs.backend == 'true'
