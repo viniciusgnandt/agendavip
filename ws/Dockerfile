@@ -17,7 +17,7 @@ FROM node:20-slim
 
 WORKDIR /app
 
-# Copia apenas o necessário do stage de build
+# Copia apenas o necessário do stage de build #
 COPY --from=build /app .
 
 COPY entrypoint.sh /entrypoint.sh
