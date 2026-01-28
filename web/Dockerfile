@@ -30,6 +30,7 @@ COPY --from=build /app/build /usr/share/nginx/html
 # Configuração SPA (React Router)
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
+COPY env.template.js /usr/share/nginx/html/env.template.js
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
