@@ -12,7 +12,7 @@ chmod 600 /root/.oci/config
 echo "$OCI_API_KEY" | base64 -d > /root/.oci/oci_api_key.pem
 chmod 600 /root/.oci/oci_api_key.pem
 
-# Public Key #
+# Public Key
 echo "$OCI_API_KEY_PUBLIC" | base64 -d > /root/.oci/oci_api_key_public.pem
 chmod 600 /root/.oci/oci_api_key_public.pem
 
