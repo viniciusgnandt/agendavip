@@ -7,8 +7,7 @@ WORKDIR /app
 
 # Copia apenas manifests primeiro (melhor cache)
 COPY package.json ./
-RUN npm install -g yarn
-RUN yarn install
+RUN npm install --legacy-peer-deps
 
 # Copia o restante do código
 COPY . .
