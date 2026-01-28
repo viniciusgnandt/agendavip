@@ -35,6 +35,8 @@ jobs:
       frontend: ${{ steps.detect.outputs.frontend }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
 
       - name: Detect changed directories
         id: detect
