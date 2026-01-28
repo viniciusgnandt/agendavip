@@ -1,13 +1,14 @@
 # ===============================
 # STAGE 1 — BUILD (React)
 # ===============================
-FROM node:18-alpine AS build
+FROM node:20-alpine AS build
 
 WORKDIR /app
 
 # Copia apenas manifests primeiro (melhor cache)
 COPY package.json package-lock.json ./
-RUN npm ci --legacy-peer-deps
+RUN npm install -g yarn
+RUN yarn install
 
 # Copia o restante do código
 COPY . .
