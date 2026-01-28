@@ -102,10 +102,7 @@ jobs:
       - name: Deploy Backend TEST
         if: needs.changes.outputs.backend == 'true'
         run: |
-          curl -X POST \
-          -H "Content-Type: application/json" \
-          -d '{"image":"'"$BACKEND_IMAGE:${{ github.event.inputs.image_tag }}"'"}' \
-          ${{ secrets.PORTAINER_WEBHOOK_BACKEND_PROD }} &
+          curl -X POST ${{ secrets.PORTAINER_WEBHOOK_BACKEND_TEST }}
 
       - name: Deploy Frontend TEST
         if: needs.changes.outputs.frontend == 'true'
