@@ -3,7 +3,7 @@ FROM node:20-alpine AS build
 
 WORKDIR /app
 
-# Copia somente os manifests #
+# Copia somente os manifests ##
 COPY package*.json ./
 
 # Instala SOMENTE deps de produção
