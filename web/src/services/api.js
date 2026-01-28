@@ -1,8 +1,10 @@
 import axios from 'axios';
-import { ENV } from "../config/env";
+import { getConfig } from "../config/runtimeConfig";
+
+const config = getConfig();
 
 const api = axios.create({
-  baseURL: ENV.BACKEND_URL,
+  baseURL: config.BACKEND_URL,
 });
 
 export default api;

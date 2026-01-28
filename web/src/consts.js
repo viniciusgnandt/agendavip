@@ -1,7 +1,9 @@
-import { ENV } from "./config/env";
+import { getConfig } from "./config/runtimeConfig";
+
+const config = getConfig();
 
 export default {
-  salaoId: ENV.SALAO_ID,
-  clienteId: ENV.CLIENTE_ID,
-  colaboradorId: ENV.COLABORADOR_ID,
+  salaoId: config.SALAO_ID,
+  clienteId: config.CLIENTE_ID,
+  colaboradorId: config.COLABORADOR_ID,
 };

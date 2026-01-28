@@ -1,8 +1,10 @@
-import { ENV } from "../config/env";
+import { getConfig } from "../config/runtimeConfig";
+
+const config = getConfig();
 
 export default {
   OCI: {
-    bucketURL: ENV.BUCKET_URL,
+    bucketURL: config.BUCKET_URL,
   },
   validateEmail: (email) => {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
