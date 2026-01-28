@@ -6,11 +6,11 @@ services:
       - "3000"
     environment:
       NODE_ENV: ${NODE_ENV}
-      REACT_APP_BACKEND_URL: ${REACT_APP_BACKEND_URL}
-      REACT_APP_SALAO_ID: ${REACT_APP_SALAO_ID}
-      REACT_APP_CLIENTE_ID: ${REACT_APP_CLIENTE_ID}
-      REACT_APP_COLABORADOR_ID: ${REACT_APP_COLABORADOR_ID}
-      REACT_APP_BUCKET_URL: ${REACT_APP_BUCKET_URL}
+      BACKEND_URL: ${BACKEND_URL}
+      SALAO_ID: ${SALAO_ID}
+      CLIENTE_ID: ${CLIENTE_ID}
+      COLABORADOR_ID: ${COLABORADOR_ID}
+      BUCKET_URL: ${BUCKET_URL}
     restart: unless-stopped
     networks:
       - agenda-net
