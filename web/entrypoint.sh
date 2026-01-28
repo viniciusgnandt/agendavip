@@ -5,6 +5,5 @@ set -e
 envsubst < /usr/share/nginx/html/env.template.js > /usr/share/nginx/html/env.js
 
 # Agora inicia o nginx
-echo "✅ "inicializando serviço"
+echo "✅ "inicializando nginx"
 exec "$@"
-echo "✅ "serviço iniciado"
