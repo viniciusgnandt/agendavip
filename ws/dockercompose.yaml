@@ -1,9 +1,7 @@
 services:
   api:
     container_name: agendabackend_${NODE_ENV}
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/viniciusgnandt/ws:latest
     expose:
       - "8000"
     environment:
@@ -11,7 +9,9 @@ services:
       MONGODB_URI: ${MONGODB_URI}
       OCI_CONFIG: ${OCI_CONFIG}
       OCI_API_KEY: ${OCI_API_KEY}
-      OCI_API_KEY_PUBLIC_PEM: ${OCI_API_KEY_PUBLIC_PEM}
+      OCI_API_KEY_PUBLIC: ${OCI_API_KEY_PUBLIC}
+      OCI_BUCKET_NAME: ${OCI_BUCKET_NAME}
+      OCI_BUCKET_NAMESPACE: ${OCI_BUCKET_NAMESPACE}
     restart: unless-stopped
     networks:
       - agenda-net

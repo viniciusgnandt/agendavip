@@ -1,16 +1,16 @@
 services:
-  dev:
-    image: node:20
-    container_name: controlpanel_dev
-    tty: true
-    stdin_open: true
-    ports:
-      - "3000:3000"
-    volumes:
-      - .:/app
-    working_dir: /app
-    env_file:
-      - ./.env
+  frontend:
+    container_name: agendafrontend_${NODE_ENV}
+    image: ghcr.io/viniciusgnandt/web:latest
+    expose:
+      - "3000"
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      BACKEND_URL: ${BACKEND_URL}
+      SALAO_ID: ${SALAO_ID}
+      CLIENTE_ID: ${CLIENTE_ID}
+      COLABORADOR_ID: ${COLABORADOR_ID}
+      BUCKET_URL: ${BUCKET_URL}
     restart: unless-stopped
     networks:
       - agenda-net

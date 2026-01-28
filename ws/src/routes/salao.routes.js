@@ -3,7 +3,7 @@ const router = express.Router();
 const Salao = require('../models/salao');
 const Servico = require('../models/servico');
 const Horario = require('../models/horario');
-const turf = require('turf');
+const turf = require('@turf/distance').default;
 const util = require('../util');
 
 /*
@@ -19,29 +19,9 @@ router.post('/', async (req, res) => {
 });
 
 /*
-  BUSCA OS SERVIÇOS DE UM SALÃO
-*/
-router.get('/servicos/:salaoId', async (req, res) => {
-  try {
-    const { salaoId } = req.params;
-    const servicos = await Servico.find({
-      salaoId,
-      status: 'A',
-    }).select('_id titulo');
-     
-    res.json({
-      servicos: servicos.map((s) => ({ label: s.titulo, value: s._id })),
-    });
-    
-  } catch (err) {
-    res.json({ error: true, message: err.message });
-  }
-});
-
-/*
   BUSCA UM SALÃO PELO ID
 */
-router.get('/:id', async (req, res) => {
+router.post('/filter/:id', async (req, res) => {
   try {
     const salao = await Salao.findById(req.params.id).select(req.body.fields);
     
@@ -59,6 +39,36 @@ router.get('/:id', async (req, res) => {
     const isOpened = await util.isOpened(horarios);
     */
     res.json({ error: false, salao: { ...salao._doc, distance/*, isOpened*/ } });
+  } catch (err) {
+    res.json({ error: true, message: err.message });
+  }
+});
+
+/*
+  ATUALIZAR UM SALÃO
+*/
+
+
+
+/*
+  DELETAR UM SALÃO
+*/
+
+/*
+  BUSCA OS SERVIÇOS DE UM SALÃO
+*/
+router.get('/servicos/:salaoId', async (req, res) => {
+  try {
+    const { salaoId } = req.params;
+    const servicos = await Servico.find({
+      salaoId,
+      status: 'A',
+    }).select('_id titulo');
+     
+    res.json({
+      servicos: servicos.map((s) => ({ label: s.titulo, value: s._id })),
+    });
+    
   } catch (err) {
     res.json({ error: true, message: err.message });
   }

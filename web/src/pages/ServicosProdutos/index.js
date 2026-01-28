@@ -95,7 +95,7 @@ const ServicosProdutos = () => {
     dispatch(removeServico(servicoId));
   };
 
-  useEffect(() => {
+   useEffect(() => {
     dispatch(allServicos());
   }, []);
 
@@ -192,11 +192,12 @@ const ServicosProdutos = () => {
                 multiple
                 autoUpload={false}
                 listType="picture"
-                defaultFileList={servico.arquivos.map((s, i) => ({
-                  name: s?.caminho,
+                defaultFileList={servico.arquivos.map((s, i) => ({                  
+                  name: s?.arquivo,
                   fileKey: i,
-                  url: `${util.AWS.bucketURL}/${s?.caminho}`,
+                  url: `${util.OCI.bucketURL}/${s?.arquivo}`,
                 }))}
+                               
                 onChange={(files) => {
                   const arquivos = files
                     .filter((f) => f.blobFile)
