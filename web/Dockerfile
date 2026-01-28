@@ -7,7 +7,7 @@ WORKDIR /app
 
 # Copia apenas manifests primeiro (melhor cache)
 COPY package.json ./
-RUN npm install --legacy-peer-deps
+RUN npm install --legacy-peer-deps --omit=dev
 
 # Copia o restante do código
 COPY . .
