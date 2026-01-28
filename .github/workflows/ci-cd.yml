@@ -31,31 +31,22 @@ jobs:
   changes:
     runs-on: ubuntu-latest
     outputs:
-      backend: ${{ steps.detect.outputs.backend }}
-      frontend: ${{ steps.detect.outputs.frontend }}
+      backend: ${{ steps.filter.outputs.backend }}
+      frontend: ${{ steps.filter.outputs.frontend }}
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0  # histórico completo para paths-filter
 
-      - name: Detect changed directories
-        id: detect
-        run: |
-          echo "Checking for changes..."
-          CHANGED_FILES=$(git diff --name-only ${{ github.sha }} ${{ github.sha }}~1)
-          echo "Changed files: $CHANGED_FILES"
-
-          if echo "$CHANGED_FILES" | grep -q "^ws/"; then
-            echo "backend=true" >> $GITHUB_OUTPUT
-          else
-            echo "backend=false" >> $GITHUB_OUTPUT
-          fi
-
-          if echo "$CHANGED_FILES" | grep -q "^web/"; then
-            echo "frontend=true" >> $GITHUB_OUTPUT
-          else
-            echo "frontend=false" >> $GITHUB_OUTPUT
-          fi
+      - name: Detect changes
+        id: filter
+        uses: dorny/paths-filter@v2
+        with:
+          filters: |
+            backend:
+              - 'ws/**'
+            frontend:
+              - 'web/**'
 
   # ======================
   # BUILD
