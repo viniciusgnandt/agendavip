@@ -1,6 +1,8 @@
+import { ENV } from "../config/env";
+
 export default {
   OCI: {
-    bucketURL: process.env.REACT_APP_BUCKET_URL,
+    bucketURL: ENV.BUCKET_URL,
   },
   validateEmail: (email) => {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
