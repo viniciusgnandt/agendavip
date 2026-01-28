@@ -25,14 +25,44 @@ env:
   FRONTEND_IMAGE: ghcr.io/${{ github.repository_owner }}/web
 
 jobs:
-# ======================
-# BUILD
-# ======================
-  build:
+  # ======================
+  # DETECT CHANGES
+  # ======================
+  changes:
     runs-on: ubuntu-latest
     outputs:
-      tag: ${{ steps.tag.outputs.tag }}
+      backend: ${{ steps.detect.outputs.backend }}
+      frontend: ${{ steps.detect.outputs.frontend }}
+    steps:
+      - uses: actions/checkout@v4
 
+      - name: Detect changed directories
+        id: detect
+        run: |
+          echo "Checking for changes..."
+          CHANGED_FILES=$(git diff --name-only ${{ github.sha }} ${{ github.sha }}~1)
+          echo "Changed files: $CHANGED_FILES"
+
+          if echo "$CHANGED_FILES" | grep -q "^ws/"; then
+            echo "backend=true" >> $GITHUB_OUTPUT
+          else
+            echo "backend=false" >> $GITHUB_OUTPUT
+          fi
+
+          if echo "$CHANGED_FILES" | grep -q "^web/"; then
+            echo "frontend=true" >> $GITHUB_OUTPUT
+          else
+            echo "frontend=false" >> $GITHUB_OUTPUT
+          fi
+
+  # ======================
+  # BUILD
+  # ======================
+  build:
+    runs-on: ubuntu-latest
+    needs: changes
+    outputs:
+      tag: ${{ steps.tag.outputs.tag }}
     steps:
       - uses: actions/checkout@v4
 
@@ -49,50 +79,50 @@ jobs:
           username: ${{ secrets.GHCR_USERNAME }}
           password: ${{ secrets.GHCR_TOKEN }}
 
-#      - name: Build & Push Backend
-#        run: |
-#          docker build --no-cache \
-#            -t $BACKEND_IMAGE:${{ steps.tag.outputs.tag }} \
-#            -t $BACKEND_IMAGE:latest \
-#            ./ws
-
-#          docker push $BACKEND_IMAGE:${{ steps.tag.outputs.tag }}
-#          docker push $BACKEND_IMAGE:latest
+      - name: Build & Push Backend
+        if: needs.changes.outputs.backend == 'true'
+        run: |
+          docker build --no-cache \
+            -t $BACKEND_IMAGE:${{ steps.tag.outputs.tag }} \
+            -t $BACKEND_IMAGE:latest \
+            ./ws
+          docker push $BACKEND_IMAGE:${{ steps.tag.outputs.tag }}
+          docker push $BACKEND_IMAGE:latest
 
       - name: Build & Push Frontend
+        if: needs.changes.outputs.frontend == 'true'
         run: |
           docker build --no-cache \
             -t $FRONTEND_IMAGE:${{ steps.tag.outputs.tag }} \
             -t $FRONTEND_IMAGE:latest \
             ./web
+          docker push $FRONTEND_IMAGE:${{ steps.tag.outputs.tag }}
+          docker push $FRONTEND_IMAGE:latest
 
-            docker push $FRONTEND_IMAGE:${{ steps.tag.outputs.tag }}
-            docker push $FRONTEND_IMAGE:latest
-
-# ======================
-# DEPLOY TEST (AUTO)
-# ======================
+  # ======================
+  # DEPLOY TEST (AUTO)
+  # ======================
   deploy_test:
     timeout-minutes: 15
     runs-on: ubuntu-latest
     needs: build
-
     steps:
-#      - name: Deploy Backend TEST
-#        run: |
-#          curl -X POST ${{ secrets.PORTAINER_WEBHOOK_BACKEND_TEST }}
+      - name: Deploy Backend TEST
+        if: needs.changes.outputs.backend == 'true'
+        run: |
+          curl -X POST ${{ secrets.PORTAINER_WEBHOOK_BACKEND_TEST }}
 
       - name: Deploy Frontend TEST
+        if: needs.changes.outputs.frontend == 'true'
         run: |
           curl -X POST ${{ secrets.PORTAINER_WEBHOOK_FRONTEND_TEST }}
 
-# ======================
-# DEPLOY PROD (MANUAL)
-# ======================
+  # ======================
+  # DEPLOY PROD (MANUAL)
+  # ======================
   deploy_prod:
     runs-on: ubuntu-latest
     if: github.event_name == 'workflow_dispatch'
-
     steps:
       - name: Deploy Backend PROD
         if: github.event.inputs.target == 'backend' || github.event.inputs.target == 'both'
