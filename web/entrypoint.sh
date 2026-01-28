@@ -4,9 +4,7 @@ set -e
 # Gera env.js
 envsubst < /usr/share/nginx/html/env.template.js > /usr/share/nginx/html/env.js
 
-# Debug: verificar conteúdo
-echo "✅ env.js gerado:"
-cat /usr/share/nginx/html/env.js
-
 # Agora inicia o nginx
+echo "✅ "inicializando serviço"
 exec "$@"
+echo "✅ "serviço iniciado"
