@@ -1,10 +1,12 @@
 #!/bin/sh
+set -e
 
-echo "🔧 Gerando env.js em runtime..."
-
+# Gera env.js
 envsubst < /usr/share/nginx/html/env.template.js > /usr/share/nginx/html/env.js
 
+# Debug: verificar conteúdo
 echo "✅ env.js gerado:"
 cat /usr/share/nginx/html/env.js
 
+# Agora inicia o nginx
 exec "$@"
