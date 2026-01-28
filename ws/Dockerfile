@@ -26,4 +26,4 @@ RUN chmod +x /entrypoint.sh
 EXPOSE 8000
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["npm", "run", "start"]
+CMD ["node", "index.js"]
