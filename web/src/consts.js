@@ -1,4 +1,4 @@
-import { ENV } from "../config/env";
+import { ENV } from "./config/env";
 
 export default {
   salaoId: ENV.SALAO_ID,
